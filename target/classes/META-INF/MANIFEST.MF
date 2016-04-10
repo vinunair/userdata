@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: userdata
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.github.vinunair
+Build-Jdk: 1.7.0_40
+Built-By: vinu
+Created-By: Maven Integration for Eclipse
+
