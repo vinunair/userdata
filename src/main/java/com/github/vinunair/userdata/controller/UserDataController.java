@@ -22,7 +22,7 @@ public class UserDataController {
     @RequestMapping("user/add")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
-        return "adduserform";
+        return "useradd";
     }
 
     @RequestMapping(value = "user", method = RequestMethod.POST)

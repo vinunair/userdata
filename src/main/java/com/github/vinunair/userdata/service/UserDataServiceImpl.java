@@ -21,12 +21,10 @@ public class UserDataServiceImpl implements UserDataService {
         this.userRespository = userRespository;
     }
 
-    @Override
     public User saveUser(User user) {
         return userRespository.save(user);
     }
 
-    @Override
     public Iterable<User> searchUserByName(String name) {
         List<User> fetchUserByFirstName = userRespository.findByFirstnameContaining(name);
         List<User> fetchUserByLastName = userRespository.findByLastnameContaining(name);
