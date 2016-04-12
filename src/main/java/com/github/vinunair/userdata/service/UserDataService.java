@@ -1,5 +1,7 @@
 package com.github.vinunair.userdata.service;
 
+import java.util.List;
+
 import com.github.vinunair.userdata.domain.User;
 
 public interface UserDataService {

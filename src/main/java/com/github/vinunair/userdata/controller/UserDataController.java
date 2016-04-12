@@ -9,7 +9,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.github.vinunair.userdata.domain.Search;
 import com.github.vinunair.userdata.domain.User;
 import com.github.vinunair.userdata.service.UserDataService;
 
@@ -30,17 +32,24 @@ public class UserDataController {
     }
 
     @RequestMapping(value = "user", method = RequestMethod.POST)
-    public String saveUser(@Valid User user,BindingResult bindingResult) {
+    public String saveUser(@Valid User user,BindingResult bindingResult,RedirectAttributes redirectAttrs) {
     	if(bindingResult.hasErrors())
     		return "useradd";
     	
         userDataService.saveUser(user);
+        redirectAttrs.addAttribute("successMessage", "User data saved");
         return "redirect:/user/add";
     }
     
-    @RequestMapping("user/search/{name}")
-    public String searchUser(@PathVariable String name,Model model) {
-    	model.addAttribute("users", userDataService.searchUserByName(name));
+    @RequestMapping("user/search")
+    public String searchUser(Model model) {
+        model.addAttribute("search", new Search());
+        return "usersearch";
+    }
+    
+    @RequestMapping(value="search",method=RequestMethod.POST)
+    public String search(Search search,Model model) {
+    	model.addAttribute("users", userDataService.searchUserByName(search.getName()));
     	return "usersearch";
     }
 }

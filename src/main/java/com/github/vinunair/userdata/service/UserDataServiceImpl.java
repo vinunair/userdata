@@ -1,5 +1,6 @@
 package com.github.vinunair.userdata.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -26,12 +27,17 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public Iterable<User> searchUserByName(String name) {
-        List<User> fetchUserByFirstName = userRespository.findByFirstnameContaining(name);
-        List<User> fetchUserByLastName = userRespository.findByLastnameContaining(name);
+    	List<User> fetchUserByFirstName = userRespository.findByFirstnameContaining(name);
+    	List<User> fetchUserByLastName = userRespository.findByLastnameContaining(name);
         List<User> fetchUserByFirstnameAndLastName = userRespository.findByFirstnameAndLastnameContaining(name, name);
-
-        Set uniqueUsersByName = new HashSet<User>();
-        Collections.addAll(uniqueUsersByName, fetchUserByFirstName,fetchUserByLastName,fetchUserByFirstnameAndLastName);
+        
+        List<User> finalUserList = new ArrayList<User>();
+        finalUserList.addAll(fetchUserByFirstName);
+        finalUserList.addAll(fetchUserByLastName);
+        finalUserList.addAll(fetchUserByFirstnameAndLastName);
+        
+        Set uniqueUsersByName = new HashSet<User>(finalUserList);
+       
         return uniqueUsersByName;
     }
 

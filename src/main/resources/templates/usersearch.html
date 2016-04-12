@@ -8,12 +8,18 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <form th:object="${search}" th:action="@{/search}" method="post">
     <table>
     <tr>
+     <td>Search :</td>
+    <td><input type="text" th:field="*{name}"/></td>    
     </tr>
-    <td>  <input type="text" th:field="*{firstname}"/>  </td>    
+    <tr>
+    <td><button type="submit">Submit</button> </td>
+    </tr>
     </table>
-    <div th:if="${not #lists.isEmpty(users)}">
+    </form>
+    <div  th:if="${not #lists.isEmpty(users)}">
         <h2>User List</h2>
         <table>
             <tr>

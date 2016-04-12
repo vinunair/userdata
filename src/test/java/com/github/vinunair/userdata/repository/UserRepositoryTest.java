@@ -25,15 +25,6 @@ public class UserRepositoryTest {
 		this.userRespository = userRepository;
 	}
 	
-	@Test
-	public void testSaveUser() {
-		User user = new User();
-		user.setFirstname("Vinu");
-		user.setLastname("Nair");
-		
-		userRespository.save(user);
-		assertNotNull(user.getId());
-	}
 	
 	@Test
 	public void testListUser() {
