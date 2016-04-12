@@ -8,26 +8,29 @@
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
     <h2>User Details</h2>
+    
     <div>
         <form  th:object="${user}" th:action="@{/user}" method="post">
             <input type="hidden" th:field="*{id}"/>
-            
-            <div >
-                <label>First Name:</label>
-                <div>
-                    <input type="text" th:field="*{firstname}"/>
-                </div>
-            </div>
-            <div>
-                <label>Lastname:</label>
-                <div>
-                    <input type="text" th:field="*{lastname}"/>
-                </div>
-            </div>
-            
-            <div>
-                <button type="submit">Submit</button>
-            </div>
+           <table>
+           	<tr>
+           	  <td>  <label>First Name:</label> </td>
+            </tr>    
+            <tr> 
+            	<td>  <input type="text" th:field="*{firstname}"/>  </td>    
+            	<td th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">First Name Error</td>
+            </tr>
+            <tr>
+               <td> <label>Lastname:</label> </td>
+            </tr>    
+            <tr>
+              <td>      <input type="text" th:field="*{lastname}"/> </td>
+              <td th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Last Name Error</td>
+             </tr>
+            <tr>
+               <td> <button type="submit">Submit</button> </td>
+             </tr>  
+            </table>
         </form>
     </div>
 </div>
